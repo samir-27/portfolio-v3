@@ -49,7 +49,7 @@ export default function Skills() {
   };
 
   return (
-    <section className="min-h-[85vh] w-full flex items-center justify-center py-12">
+    <section className="min-h-[85vh] w-full ">
       <div className="w-full max-w-4xl">
         
         {/* Page Header */}
