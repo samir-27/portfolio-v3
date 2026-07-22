@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router-dom';
-import { Home, User, Code2, Award, Mail } from 'lucide-react';
+import { Home, User, Code2, Award, Mail, FolderGit2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const navItems = [
   { path: '/', name: 'Home', icon: Home },
   { path: '/about', name: 'About', icon: User },
   { path: '/skills', name: 'Skills', icon: Code2 },
-  { path: '/certificates', name: 'Certificates', icon: Award },
+  { path: '/projects', name: 'Projects', icon: FolderGit2 },
   { path: '/contacts', name: 'Contact', icon: Mail },
 ];
 
