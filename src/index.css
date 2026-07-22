@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+/* 1. Define the Light Theme (Default) */
+:root {
+  --theme-dominant: var(--color-zinc-50);
+  --theme-secondary: var(--color-white);
+  --theme-text-main: var(--color-zinc-900);
+  --theme-text-muted: var(--color-zinc-500);
+  --theme-accent: var(--color-zinc-900);
+  --theme-accent-text: var(--color-zinc-50);
+  --theme-border: var(--color-zinc-200);
+}
+
+/* 2. Define the Dark Theme */
+.dark {
+  --theme-dominant: var(--color-zinc-950);
+  --theme-secondary: var(--color-zinc-900);
+  --theme-text-main: var(--color-zinc-100);
+  --theme-text-muted: var(--color-zinc-400);
+  --theme-accent: var(--color-zinc-100);
+  --theme-accent-text: var(--color-zinc-900);
+  --theme-border: var(--color-zinc-800);
+}
+
+/* 3. Tell Tailwind to make classes out of our variables */
+@theme {
+  --color-dominant: var(--theme-dominant);
+  --color-secondary: var(--theme-secondary);
+  --color-txt-main: var(--theme-text-main);
+  --color-txt-muted: var(--theme-text-muted);
+  --color-accent: var(--theme-accent);
+  --color-accent-txt: var(--theme-accent-text);
+  --color-border-line: var(--theme-border);
+}
+
+/* 4. Apply the global background */
+body {
+  background-color: var(--color-dominant);
+  color: var(--color-txt-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
