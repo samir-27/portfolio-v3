@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Download } from 'lucide-react';
+import home from "../assets/png/home.png";
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
   const containerVariants = {
@@ -10,13 +12,22 @@ export default function Home() {
     }
   };
 
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/projects');
+  };
+
+  const handleResumeClick = () => {
+    window.open('https://res.cloudinary.com/ddc3h3udr/image/upload/v1784774994/samir_sumra_1_zr333r.pdf', '_blank', 'noopener,noreferrer');
+  };
+
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
   };
 
   return (
-    // If your App.jsx doesn't have a dark background, this section wrapper will ensure the Home page does.
     <section className="min-h-[85vh] w-full flex items-center justify-center rounded-3xl transition-colors duration-300">
       <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
         
@@ -49,16 +60,15 @@ export default function Home() {
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
-            {/* Primary Button */}
-            <button className="flex items-center gap-2 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-7 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity">
+          
+            <button onClick={handleClick} className="flex items-center gap-2 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-7 py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity cursor-pointer">
               View My Work
               <ArrowRight size={18} />
             </button>
             
             {/* Secondary Button */}
-            <button className="flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors duration-300">
-              Download CV
-              <Download size={18} />
+            <button onClick={handleResumeClick} className="flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors duration-300 cursor-pointer">
+              Resume
             </button>
           </motion.div>
         </motion.div>
@@ -74,7 +84,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-zinc-900 dark:bg-zinc-100 opacity-5 dark:opacity-10 blur-3xl rounded-full w-3/4 h-3/4 mx-auto z-0 transition-opacity duration-300" />
           
           <motion.img
-            src="https://samirsumra.netlify.app/assets/hero-WzPEhUYt.svg"
+            src={home}
             alt="Web Developer Illustration"
             className="w-full max-w-md lg:max-w-lg object-contain z-10 relative"
             animate={{ 

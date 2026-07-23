@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Code2, Server, Database } from 'lucide-react';
+import skills from "../assets/png/skills.png";
 
 export default function Skills() {
   // Organized skill data with categories and Devicon logo URLs
@@ -49,75 +50,93 @@ export default function Skills() {
   };
 
   return (
-    <section className="min-h-[85vh] w-full ">
-      <div className="w-full max-w-4xl">
+    <section className="min-h-[85vh] w-full flex items-center justify-center py-12 px-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full max-w-7xl items-center">
         
-        {/* Page Header */}
+        {/* Left Column: Illustrative Image */}
+        {/* ADDED: Framer Motion entrance animation to the wrapper div */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex items-center gap-3 mb-16"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="flex items-center justify-center"
         >
-          <div className="p-3 bg-zinc-900 border border-zinc-800 rounded-xl">
-            <Code2 className="text-zinc-100" size={24} />
-          </div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-zinc-50 tracking-tight">
-            Technical Skills
-          </h2>
+          {/* CHANGED: img to motion.img and ADDED: Continuous floating animation */}
+          <motion.img
+            src={skills}
+            alt="Skills Illustration"
+            className="w-full max-w-sm lg:max-w-md object-contain"
+            animate={{ 
+              y: [0, -20, 0],
+            }}
+            transition={{ 
+              repeat: Infinity, 
+              duration: 4, 
+              ease: "easeInOut" 
+            }}
+          />
         </motion.div>
 
-        {/* Skill Categories Wrapper */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-          className="flex flex-col gap-12"
-        >
-          {skillCategories.map((category, index) => (
-            <motion.div key={index} variants={itemVariants} className="flex flex-col gap-6">
-              
-              {/* Category Title */}
-              <div className="flex items-center gap-3">
-                {category.icon}
-                <h3 className="text-2xl font-semibold text-zinc-100 tracking-tight">
-                  {category.title}
-                </h3>
-              </div>
+        {/* Right Column: Technical Skills Content */}
+        <div className="flex flex-col">
+          {/* Page Header */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-3 mb-12"
+          >
+            <div className="p-3 bg-zinc-900 border border-zinc-800 rounded-xl">
+              <Code2 className="text-zinc-100" size={24} />
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-bold text-zinc-50 tracking-tight">
+              Technical Skills
+            </h2>
+          </motion.div>
 
-              {/* Skills Grid */}
-              <div className="flex flex-wrap gap-4 lg:gap-6">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skillIndex}
-                    // Framer Motion handles the shrinking hover effect
-                    whileHover={{ scale: 0.85 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                    // Group class allows us to trigger inner child animations on hover
-                    className="group relative w-24 h-24 lg:w-28 lg:h-28 flex items-center justify-center bg-zinc-900 border border-zinc-800 rounded-2xl cursor-pointer shadow-sm overflow-hidden"
-                  >
-                    
-                    {/* State 1: Logo (Visible by default, fades out on hover) */}
-                    <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 group-hover:opacity-0">
+          {/* Skill Categories Wrapper */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+            className="flex flex-col gap-10"
+          >
+            {skillCategories.map((category, index) => (
+              <motion.div key={index} variants={itemVariants} className="flex flex-col gap-5">
+                
+                {/* Category Title */}
+                <div className="flex items-center gap-3">
+                  {category.icon}
+                  <h3 className="text-xl lg:text-2xl font-semibold text-zinc-100 tracking-tight">
+                    {category.title}
+                  </h3>
+                </div>
+
+                {/* Skills Flex Wrap */}
+                <div className="flex flex-wrap gap-4 lg:gap-5">
+                  {category.skills.map((skill, skillIndex) => (
+                    <motion.div
+                      key={skillIndex}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                      className="group relative px-5 py-3 lg:px-6 lg:py-4 flex items-center gap-3 bg-zinc-900 border border-zinc-800 rounded-fullshadow-sm overflow-hidden"
+                    >
                       <img
                         src={skill.logo}
                         alt={`${skill.name} logo`}
-                        className={`w-12 h-12 lg:w-14 lg:h-14 object-contain ${skill.invert ? 'invert opacity-80' : ''}`}
+                        className={`w-6 h-6 object-contain ${skill.invert ? 'invert opacity-80' : ''}`}
                       />
-                    </div>
-
-                    {/* State 2: Text (Hidden by default, fades in on hover) */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-zinc-800">
                       <span className="text-sm lg:text-base font-semibold text-zinc-100 tracking-wide">
                         {skill.name}
                       </span>
-                    </div>
+                    </motion.div>
+                  
+                  ))}
+                </div>
 
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
 
       </div>
     </section>

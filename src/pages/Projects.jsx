@@ -22,7 +22,7 @@ export default function Projects() {
     {
       title: 'Weather App',
       image: weather,
-      liveLink: 'myweather-27.netlify.app',
+      liveLink: 'https://myweather-27.netlify.app/',
       githubLink: 'https://github.com/samir-27/my-weather',
     },
     {

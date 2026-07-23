@@ -61,7 +61,7 @@ const Contacts = () => {
                         
                         <motion.div variants={variants} className="flex flex-col gap-1">
                             <h2 className="font-semibold text-zinc-100 text-lg uppercase tracking-wider">Address</h2>
-                            <p className="text-zinc-400 text-lg">Bhavnagar, Gujarat</p>
+                            <p className="text-zinc-400 text-lg">vadodara, Gujarat</p>
                         </motion.div>
                         
                         <motion.div variants={variants} className="flex flex-col gap-1">
