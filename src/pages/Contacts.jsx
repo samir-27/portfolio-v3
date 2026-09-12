@@ -1,7 +1,8 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
+import { ArrowUpRight, Mail, MapPin, Phone, Send } from 'lucide-react';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Contacts = () => {
@@ -12,7 +13,7 @@ const Contacts = () => {
         animate: {
             x: 0,
             opacity: 1,
-            transition: { duration: 0.5, staggerChildren: 0.2 },
+            transition: { duration: 0.2 },
         },
     };
 
@@ -39,74 +40,54 @@ const Contacts = () => {
         <motion.div
             variants={variants}
             initial="initial"
-            whileInView="animate"
-            // Replaced text-white with standard layout padding/sizing
-            className="min-h-[85vh] w-full flex flex-col lg:flex-row items-center justify-center gap-16 py-12 px-4 lg:px-8"
+            animate="animate"
+            className="relative flex min-h-[85vh] w-full items-center justify-center overflow-hidden py-8"
         >
-            <div className="w-full max-w-6xl flex flex-col lg:flex-row gap-16 items-center">
+            <div className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-cyan-400/5 blur-3xl" />
+            <div className="relative flex w-full max-w-6xl flex-col items-center gap-12 lg:flex-row lg:gap-20">
                 
                 {/* Contact Info (Left Side) */}
-                <motion.div variants={variants} className="w-full lg:w-1/2 flex flex-col gap-8">
-                    <motion.h1 variants={variants} className="text-5xl lg:text-7xl font-extrabold text-zinc-50 tracking-tight">
-                        Let's work <br className="hidden lg:block"/> together
+                <motion.div variants={variants} className="flex w-full flex-col gap-8 lg:w-1/2">
+                    <motion.div variants={variants} className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-zinc-500">
+                        <span className="h-px w-8 bg-cyan-300" />
+                        Start a conversation
+                    </motion.div>
+                    <motion.h1 variants={variants} className="text-5xl font-bold tracking-tight text-zinc-50 sm:text-6xl lg:text-7xl">
+                        Let's work <br className="hidden lg:block"/> together<span className="text-cyan-200">.</span>
                     </motion.h1>
+                    <motion.p variants={variants} className="max-w-lg text-base leading-7 text-zinc-400 sm:text-lg">
+                        Have a project in mind or just want to say hello? Send a note and I&apos;ll get back to you soon.
+                    </motion.p>
                     
-                    <motion.div variants={variants} className="space-y-6 mt-4">
-                        <motion.div variants={variants} className="flex flex-col gap-1">
-                            {/* Updated from purple to zinc-100 */}
-                            <h2 className="font-semibold text-zinc-100 text-lg uppercase tracking-wider">Mail</h2>
-                            {/* Updated from white/80 to zinc-400 */}
-                            <p className="text-zinc-400 text-lg">sumrasamir27@gmail.com</p>
+                    <motion.div variants={variants} className="mt-3 grid gap-3">
+                        <motion.div variants={variants} className="flex items-center gap-4 rounded-xl border border-zinc-800 bg-zinc-900/60 p-4">
+                            <Mail size={19} className="text-cyan-300" />
+                            <div><h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Mail</h2><p className="mt-1 text-sm text-zinc-300">sumrasamir27@gmail.com</p></div>
                         </motion.div>
                         
-                        <motion.div variants={variants} className="flex flex-col gap-1">
-                            <h2 className="font-semibold text-zinc-100 text-lg uppercase tracking-wider">Address</h2>
-                            <p className="text-zinc-400 text-lg">vadodara, Gujarat</p>
+                        <motion.div variants={variants} className="flex items-center gap-4 rounded-xl border border-zinc-800 bg-zinc-900/60 p-4">
+                            <MapPin size={19} className="text-amber-200" />
+                            <div><h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Based in</h2><p className="mt-1 text-sm text-zinc-300">Vadodara, Gujarat</p></div>
                         </motion.div>
                         
-                        <motion.div variants={variants} className="flex flex-col gap-1">
-                            <h2 className="font-semibold text-zinc-100 text-lg uppercase tracking-wider">Phone</h2>
-                            <p className="text-zinc-400 text-lg">9316102936</p>
+                        <motion.div variants={variants} className="flex items-center gap-4 rounded-xl border border-zinc-800 bg-zinc-900/60 p-4">
+                            <Phone size={19} className="text-cyan-300" />
+                            <div><h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Phone</h2><p className="mt-1 text-sm text-zinc-300">9316102936</p></div>
                         </motion.div>
                     </motion.div>
                 </motion.div>
 
                 {/* Contact Form (Right Side) */}
-                <div className="w-full lg:w-1/2 relative z-0 flex justify-center">
-                    
-                    {/* SVG Animation Background */}
-                    <motion.div
-                        initial={{ opacity: 1 }}
-                        whileInView={{ opacity: 0 }}
-                        transition={{ delay: 3, duration: 1 }}
-                        viewport={{ once: true }}
-                        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-                    >
-                        <svg width="350px" height="350px" viewBox="0 0 24 24" fill="none">
-                            <motion.path
-                                initial={{ pathLength: 0 }}
-                                whileInView={{ pathLength: 1 }}
-                                transition={{ duration: 4, ease: 'easeInOut' }}
-                                viewport={{ once: true }}
-                                d="M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12ZM16 12V13.5C16 14.8807 17.1193 16 18.5 16V16C19.8807 16 21 14.8807 21 13.5V12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21H16"
-                                // Changed from stroke-purple-500 to a clean zinc-500
-                                className="stroke-zinc-500 stroke-1"
-                                fill="none"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
-                    </motion.div>
-
-                    <div className="z-50 w-full max-w-md">
-                        <motion.form
+                <div className="relative z-0 flex w-full justify-center lg:w-1/2">
+                    <div className="z-10 w-full max-w-md rounded-2xl border border-zinc-800 bg-zinc-900/70 p-5 sm:p-7">
+                        <div className="mb-6 flex items-center justify-between border-b border-zinc-800 pb-4">
+                            <div><p className="text-sm font-semibold text-zinc-100">Send a message</p><p className="mt-1 text-xs text-zinc-500">I&apos;ll reply as soon as I can.</p></div>
+                            <ArrowUpRight size={18} className="text-cyan-300" />
+                        </div>
+                        <form
                             ref={formRef}
                             onSubmit={sendEmail}
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 4, duration: 1 }}
-                            className="w-full flex flex-col gap-5"
+                            className="flex w-full flex-col gap-4"
                         >
                             {/* Updated Input Styling */}
                             <input
@@ -114,31 +95,30 @@ const Contacts = () => {
                                 placeholder="Name"
                                 name="name"
                                 required
-                                className="w-full px-5 py-4 bg-zinc-900/50 border border-zinc-800 rounded-xl placeholder-zinc-500 text-zinc-100 focus:outline-none focus:border-zinc-600 focus:bg-zinc-900 transition-colors"
+                                className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-4 py-3.5 text-zinc-100 placeholder-zinc-500 transition-colors focus:border-cyan-300/60 focus:bg-zinc-950 focus:outline-none"
                             />
                             <input
                                 type="email"
                                 placeholder="Email"
                                 name="email"
                                 required
-                                className="w-full px-5 py-4 bg-zinc-900/50 border border-zinc-800 rounded-xl placeholder-zinc-500 text-zinc-100 focus:outline-none focus:border-zinc-600 focus:bg-zinc-900 transition-colors"
+                                className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-4 py-3.5 text-zinc-100 placeholder-zinc-500 transition-colors focus:border-cyan-300/60 focus:bg-zinc-950 focus:outline-none"
                             />
                             <textarea
                                 rows={6}
                                 placeholder="Message"
                                 name="message"
                                 required
-                                className="w-full px-5 py-4 bg-zinc-900/50 border border-zinc-800 rounded-xl placeholder-zinc-500 text-zinc-100 resize-none focus:outline-none focus:border-zinc-600 focus:bg-zinc-900 transition-colors"
+                                className="w-full resize-none rounded-lg border border-zinc-700 bg-zinc-950/60 px-4 py-3.5 text-zinc-100 placeholder-zinc-500 transition-colors focus:border-cyan-300/60 focus:bg-zinc-950 focus:outline-none"
                             ></textarea>
                             
-                            {/* Updated Button Styling */}
                             <button
                                 type="submit"
-                                className="w-full bg-zinc-100 text-zinc-900 py-4 rounded-xl font-bold text-lg hover:bg-white hover:scale-[1.02] transition-all duration-300 shadow-lg"
+                                className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-cyan-300 py-3.5 text-base font-bold text-zinc-950 transition-colors duration-300 hover:bg-cyan-200"
                             >
-                                Send Message
+                                Send Message <Send size={17} />
                             </button>
-                        </motion.form>
+                        </form>
                     </div>
                 </div>
             </div>
