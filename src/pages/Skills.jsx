@@ -25,14 +25,23 @@ export default function Skills() {
         { name: 'Express.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg', invert: true },
       ],
     },
+
+{
+  title: 'Database',
+  icon: <Database className="text-zinc-400" size={24} />,
+  skills: [
     {
-      title: 'Database',
-      icon: <Database className="text-zinc-400" size={24} />,
-      skills: [
-        { name: 'MySQL', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg' },
-        { name: 'MongoDB', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg' },
-      ],
+      name: 'PostgreSQL',
+      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg'
     },
+    {
+      name: 'MongoDB',
+      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg'
+    },
+  ],
+},
+
+
   ];
 
   // Framer Motion staggered entrance animations
